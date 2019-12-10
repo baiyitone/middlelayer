@@ -1,0 +1,49 @@
+[mysqld]
+ssl=0
+character-set-server = utf8
+collation-server     = utf8_general_ci
+sql_mode             = NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+user                 = mysql
+port                 = 3306
+
+datadir              = /data/mysql/mysql-5.7.24/data
+basedir              = /data/mysql/mysql-5.7.24
+socket               = /data/mysql/mysql-5.7.24/mysql/mysql.sock
+log-bin              = mysqld-bin
+binlog-format        = ROW
+binlog-do-db         = aicp
+binlog-ignore-db     = test
+binlog-ignore-db     = information_schema
+binlog-ignore-db     = mysql
+replicate-ignore-db  = test
+replicate-ignore-db  = information_schema
+replicate-ignore-db  = mysql
+
+relay-log            = mysql-relay-bin
+relay-log-index      = mysql-relay-bin.index
+relay-log-info-file  = mysql-relay-log.info
+
+master-info-file     = mysql-master.info
+log-error            = mysql.err
+
+slow_query_log_file  = mysql-slow.log
+slow-query-log       = 1
+
+max_connections      = 2000
+max_allowed_packet   = 1G
+expire_logs_days     = 30
+innodb_log_file_size = 2G
+innodb_buffer_pool_size   = 512M
+#gtid_mode=ON
+#enforce-gtid-consistency=true
+log-slave-updates         = true
+
+server-id                 = 1
+#auto_increment            = server-id
+auto_increment_offset     = 1
+auto_increment_increment  = 10
+
+
+[mysqld_safe]
+log-error                 = /data/mysql/mysql-5.7.24/logs/mysqld.err
+pid-file                  = /data/mysql/mysql-5.7.24/mysql/mysqld.pid
